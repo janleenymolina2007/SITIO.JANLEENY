@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sitio Web - Janleeny Molina</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            min-height: 100vh;
+        }
+        #menu {
+            width: 250px;
+            background-color: #2d3e50;
+            color: white;
+            padding: 20px;
+        }
+        #menu a {
+            display: block;
+            margin-bottom: 15px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        #menu a:hover {
+            background-color: #1abc9c;
+        }
+        #contenido {
+            flex-grow: 1;
+            padding: 30px;
+            background-color: #ffffff;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        .seccion {
+            display: none;
+            animation: fade 0.5s ease-in;
+        }
+        .activa {
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #2d3e50;
+            color: white;
+        }
+        img {
+            width: 150px;
+            margin: 5px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button {
+            background-color: #1abc9c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #16a085;
+        }
+        @keyframes fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            #menu {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+            #menu a {
+                margin: 5px;
+                flex-grow: 1;
+                text-align: center;
+            }
+            #contenido {
+                box-shadow: none;
+            }
+        }
+    </style>
+    <script>
+        function mostrar(id) {
+            const secciones = document.getElementsByClassName("seccion");
+            for (let i = 0; i < secciones.length; i++) {
+                secciones[i].classList.remove("activa");
+            }
+            document.getElementById(id).classList.add("activa");
+        }
+
+        let numeroSecreto = Math.floor(Math.random() * 10) + 1;
+        function verificarNumero() {
+            const entrada = parseInt(document.getElementById("entradaNumero").value);
+            const resultado = document.getElementById("resultadoJuego");
+
+            if (isNaN(entrada) || entrada < 1 || entrada > 10) {
+                resultado.textContent = "❗ Ingresa un número entre 1 y 10.";
+                return;
+            }
+
+            if (entrada === numeroSecreto) {
+                resultado.textContent = "🎉 ¡Correcto! Has adivinado el número.";
+                numeroSecreto = Math.floor(Math.random() * 10) + 1; // Nuevo número
+            } else {
+                resultado.textContent = "❌ Incorrecto. Intenta otra vez.";
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div id="menu">
+    <a href="#" onclick="mostrar('hoja')">Hoja de vida</a>
+    <a href="#" onclick="mostrar('notas')">Notas</a>
+    <a href="#" onclick="mostrar('galeria')">Galería</a>
+    <a href="#" onclick="mostrar('video')">Video</a>
+    <a href="#" onclick="mostrar('manual')">Pasos Web</a>
+    <a href="#" onclick="mostrar('juego')">Juego</a>
+</div>
+
+<div id="contenido">
+    <div id="hoja" class="seccion activa">
+        <h2>Hoja de Vida</h2>
+        <p><strong>Nombre:</strong> Janleeny Molina</p>
+        <p><strong>Carrera:</strong> Ingeniería en Sistemas</p>
+        <p><strong>Semestre:</strong> Primero</p>
+        <ul>
+            <li>Contabilidad I</li>
+            <li>Metodología de la Investigación</li>
+            <li>Lógica de Sistemas</li>
+            <li>Introducción a los Sistemas de Cómputo</li>
+            <li>Desarrollo Humano</li>
+        </ul>
+    </div>
+
+    <div id="notas" class="seccion">
+        <h2>Notas</h2>
+        <table>
+            <tr><th>Curso</th><th>1er Parcial</th><th>2do Parcial</th></tr>
+            <tr><td>Contabilidad I</td><td>12</td><td>8</td></tr>
+            <tr><td>Metodología de la Investigación</td><td>10</td><td>14</td></tr>
+            <tr><td>Lógica de Sistemas</td><td>15</td><td>12</td></tr>
+            <tr><td>Intro a Sistemas</td><td>7</td><td>4</td></tr>
+            <tr><td>Desarrollo Humano</td><td>10</td><td>13</td></tr>
+        </table>
+    </div>
+
+    <div id="galeria" class="seccion">
+        <h2>Galería</h2>
+        <div>
+            <img src="https://picsum.photos/200?random=1">
+            <img src="https://picsum.photos/200?random=2">
+            <img src="https://picsum.photos/200?random=3">
+            <img src="https://picsum.photos/200?random=4">
+            <img src="https://picsum.photos/200?random=5">
+            <img src="https://picsum.photos/200?random=6">
+            <img src="https://picsum.photos/200?random=7">
+            <img src="https://picsum.photos/200?random=8">
+            <img src="https://picsum.photos/200?random=9">
+            <img src="https://picsum.photos/200?random=10">
+        </div>
+    </div>
+
+    <div id="video" class="seccion">
+        <h2>Video</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div id="manual" class="seccion">
+        <h2>Pasos para crear el sitio web</h2>
+        <ol>
+            <li>Crear un archivo <code>index.html</code>.</li>
+            <li>Diseñar con menú lateral y contenido principal.</li>
+            <li>Crear las secciones dentro del mismo archivo.</li>
+            <li>Usar JavaScript para mostrar u ocultar secciones.</li>
+            <li>Incluir imágenes y un video de YouTube.</li>
+        </ol>
+    </div>
+
+    <div id="juego" class="seccion">
+        <h2>🎮 Juego: Adivina el Número</h2>
+        <p>Adivina un número entre 1 y 10:</p>
+        <input type="number" id="entradaNumero" min="1" max="10" placeholder="Escribe tu número">
+        <br>
+        <button onclick="verificarNumero()">Adivinar</button>
+        <p id="resultadoJuego"></p>
+    </div>
+</div>
+
+</body>
+</html>
